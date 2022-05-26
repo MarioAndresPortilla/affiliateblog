@@ -30,7 +30,7 @@ const QUERY = gql`
     }
  }
 `;
-console.log(this.props.QUERY);
+
             //FETCH REQUEST - utilizing Next.Js not the same as client side
 export async function getStaticProps() {
     const {posts} = await graphcms.request(QUERY);
@@ -56,8 +56,8 @@ export default function Home({ posts }) {
                     <BlogCard
                         title={post.title}
                         author={post.author}
-                        coverPhoto{post.coverPhoto}
-                        key={post.id}
+                        coverPhoto{...post}
+                        key={post.id} {...post}
                         datePublished={post.datePublished}
                         slug={post.slug}
                     />
